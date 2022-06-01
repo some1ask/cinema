@@ -11,3 +11,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.movie{
+  width:350px;
+    /* display:block; */
+
+}
+.movie-poster{
+  
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
