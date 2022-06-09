@@ -6,6 +6,8 @@ import {AiOutlineHeart,AiFillHeart} from 'react-icons/ai'
 import { useDispatch,useStore } from 'react-redux'
 
 
+
+
 function MovieCard() {
     let { id } = useParams();
     const [movie, setMovie] = useState({});
