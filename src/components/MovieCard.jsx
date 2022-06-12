@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addFavorite, deleteFavorite } from '../store/favorites/favoritesSlice'
 
 
+
+
 function MovieCard() {
     let { id } = useParams();
     const [movie, setMovie] = useState({});
