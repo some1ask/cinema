@@ -1,5 +1,8 @@
-const initialState = {
-    movies:[]
-};
+import { configureStore } from '@reduxjs/toolkit'
+import favoritesSlice from './favorites/favoritesSlice'
 
-export default initialState;
+export const store = configureStore({
+  reducer: {
+      favorites:favoritesSlice
+  },
+})

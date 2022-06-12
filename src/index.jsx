@@ -4,22 +4,22 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { createStore } from 'redux';
-import reducer from './store/reducer';
+import {store} from './store/store';
 import {Provider} from 'react-redux';
 import MovieCard from './components/MovieCard';
 import { Layout } from './components/Layout';
+import Header from './components/Header';
 import Favorites from './components/Favorites';
 
 
 
-const store = createStore(reducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
     <Provider store={store}>
+    <Header/>
     <Routes>
       <Route path="/" element={<Layout/>}>
         

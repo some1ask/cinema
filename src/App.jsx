@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+
 import './App.css';
 import CinemaCard from './components/CinemaCard';
 import Pagination from './components/Pagination';
@@ -12,10 +12,8 @@ import { SearchBar } from './components/SearchBar';
 
 
 function App() {
-  const dispatch = useDispatch();
   const [page,setPage] = useState(1);
   const [search, setSearch] = useState("");
-  // let movies = useSelector(state => state.movies);
   const [movies,setMovies] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
