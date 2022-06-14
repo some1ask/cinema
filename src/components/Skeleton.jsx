@@ -12,7 +12,7 @@ const Skeleton = (props) => (
     foregroundColor="#ecebeb"
     {...props}
   >
-    <rect x="13" y="16" rx="8" ry="8" width="350" height="260" />
+    <rect x="0" y="0" rx="8" ry="8" width="350" height="260" />
   </ContentLoader>
   </div>
 )

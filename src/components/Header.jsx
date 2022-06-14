@@ -7,7 +7,7 @@ const Header = () => {
     return (
         <header className="z-10">
 
-            <div className="flex text-center bg-black text-white py-4 justify-between px-10 py-3 content-center">
+            <div className="flex text-center bg-[#1F1F1F] text-white py-4 justify-between px-10 py-3 content-center">
                 <Link to="/">
                     <h1 className="font-bold text-2xl font-montserrat">FILM</h1>
                 </Link>

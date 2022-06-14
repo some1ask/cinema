@@ -41,7 +41,7 @@ const request = `https://api.themoviedb.org/3/discover/movie?api_key=58a8d7b6d2c
   return (
     <div className="App">
      <SearchBar setSearch={setSearch}/>
-      <div className='flex px-10 flex-wrap justify-between'>
+      <div className='flex px-10 flex-wrap lg:justify-between justify-center '>
         {
           !isLoaded ? (
             [...new Array(20)].map((_,index)=><Skeleton key={index}/>)

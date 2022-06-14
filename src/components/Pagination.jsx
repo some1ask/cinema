@@ -1,13 +1,12 @@
 import React from 'react'
-
+ 
 const Pagination = ({setPage}) => {
     let goToPrev = ()=>{
         setPage(x=> x<=1 ? x=1 : x-1)
+        
     }
     let goToNext = ()=>{
-        setPage(x=>{
-            console.log(x)
-            return x+1;})
+        setPage(x=>x+1)
         
     }
 

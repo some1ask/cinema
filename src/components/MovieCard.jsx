@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import { IoIosArrowBack } from 'react-icons/io'
+import { useParams } from 'react-router-dom'
 import { VscLoading } from 'react-icons/vsc'
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
+import { AiOutlineHeart, AiFillHeart,AiFillStar} from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 import { addFavorite, deleteFavorite } from '../store/favorites/favoritesSlice'
+import {Comment}  from '../components/Comment'
 
 
 
@@ -24,30 +24,33 @@ function MovieCard() {
     }, [isLoaded]);
     const dispatch = useDispatch();
     const favorites = useSelector(state => state.favorites.favorites);
-
+    const stars = Math.floor(movie.vote_average)
     const checkFavorite = (movie) => {
         favorites.map(element => element.id === movie.id ? setIsFavorite(!isFavorite) : null)
     }
-
+    console.log(movie)
 
     return (
-        <div className='container border border-black mx-auto'>
-            <Link to="/">
-                <IoIosArrowBack className='text-4xl absolute top-20 left-4' />
-            </Link>
+        <div className='container  mx-auto'>
 
             {!isLoaded ? <div className='flex justify-center pt-36 text-4xl'><VscLoading className='animate-spin' /></div> :
-                <>
-                    <h1 className="py-4 font-montserrat text-center text-4xl font-bold">{movie.title}</h1>
-                    <div className='flex border border-black space-x-8'>
-                        <img className="rounded-lg w-80" src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} />
-                        <div className='flex flex-col space-y-4 py-4'>
-
-                            <div className='flex flex-row'>
+                <div className='flex flex-col'>
+                    <div className='flex flex-col py-4'>
+                    <h1 className="font-montserrat text-center text-4xl font-bold">{movie.title}</h1>
+                    <div className='flex flex-row justify-center'>
                                 <p className='italic text-xl text-black'>
                                     {`"${movie.tagline}"`}
                                 </p>
                             </div>
+                    </div>
+                    <div className='flex  space-x-8 sm:space-x-2 sm:flex-col sm:justify-center flex-row'>
+                        <div className='flex sm:justify-center'>
+                        <img className="" src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} />
+
+                        </div>
+                        <div className='flex flex-1 flex-col space-y-4 py-4 sm:py-2 sm:px-0'>
+
+                           
                             <div className='flex flex-row space-x-1'>
                                 <p className='font-bold'>Genre:</p>
                                 <div className='flex space-x-1 flex-wrap'>
@@ -56,6 +59,21 @@ function MovieCard() {
 
                                     })}
                                 </div>
+                            </div>
+                            <div className='flex'>
+                                <p className='font-bold'>Budget: </p>
+                                <p className='italic'>&nbsp;{movie.budget}$</p>
+                            </div>
+                            <div className='flex space-x-3'>
+                            <div className='flex'>
+                                {
+                                 [...new Array(stars)].map((_,i)=><AiFillStar className='text-2xl text-yellow-300' key={i}/>)
+                                }
+                            </div>
+                            <div >{movie.vote_average}</div>
+                            </div>
+                            <div className='flex'>
+                                {movie.overview}
                             </div>
                             <div className='flex'>
                                 {
@@ -70,7 +88,10 @@ function MovieCard() {
 
                         </div>
                     </div>
-                </>}
+                    <div className='flex'>
+                        <Comment/>
+                    </div>
+                </div>}
 
 
         </div>
