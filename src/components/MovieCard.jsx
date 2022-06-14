@@ -5,6 +5,7 @@ import { AiOutlineHeart, AiFillHeart,AiFillStar} from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 import { addFavorite, deleteFavorite } from '../store/favorites/favoritesSlice'
 import {Comment}  from '../components/Comment'
+import Video  from './Video'
 
 
 
@@ -15,12 +16,18 @@ function MovieCard() {
     const [isLoaded, setIsLoaded] = useState(false);
     const [isFavorite, setIsFavorite] = useState(false);
     useEffect(() => {
+        let tempData = {}
         fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=58a8d7b6d2c8a3b25f355836fb0e3d4d`)
             .then(data => data.json())
-            .then(data => { setMovie(data); setIsLoaded(true) })
-
+            .then(data => { 
+                tempData = data;
+                return  fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=58a8d7b6d2c8a3b25f355836fb0e3d4d&language=en-US`)
+            })
+            .then(data=> data.json())
+            .then(data=>{
+                setMovie(Object.assign(tempData,data)); setIsLoaded(true)
+            })
         checkFavorite(movie)
-
     }, [isLoaded]);
     const dispatch = useDispatch();
     const favorites = useSelector(state => state.favorites.favorites);
@@ -31,7 +38,7 @@ function MovieCard() {
     console.log(movie)
 
     return (
-        <div className='container  mx-auto'>
+        <div className='container mx-auto'>
 
             {!isLoaded ? <div className='flex justify-center pt-36 text-4xl'><VscLoading className='animate-spin' /></div> :
                 <div className='flex flex-col'>
@@ -85,8 +92,11 @@ function MovieCard() {
                                 }
 
                             </div>
-
+                            
                         </div>
+                    </div>
+                    <div className='flex pt-4'>
+                                <Video data={movie.results[0]}></Video>
                     </div>
                     <div className='flex'>
                         <Comment/>
