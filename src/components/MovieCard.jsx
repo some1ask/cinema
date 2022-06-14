@@ -46,7 +46,7 @@ function MovieCard() {
                     <h1 className="font-montserrat text-center text-4xl font-bold">{movie.title}</h1>
                     <div className='flex flex-row justify-center'>
                                 <p className='italic text-xl text-black'>
-                                    {`"${movie.tagline}"`}
+                                    {movie.tagline ? `"${movie.tagline}"` : ''}
                                 </p>
                             </div>
                     </div>
@@ -58,7 +58,7 @@ function MovieCard() {
                         <div className='flex flex-1 flex-col space-y-4 py-4 sm:py-2 sm:px-0'>
 
                            
-                            <div className='flex flex-row space-x-1'>
+                            <div className='flex flex-row space-x-1 sm:justify-center'>
                                 <p className='font-bold'>Genre:</p>
                                 <div className='flex space-x-1 flex-wrap'>
                                     {movie.genres.map(element => {
@@ -68,16 +68,27 @@ function MovieCard() {
                                 </div>
                             </div>
                             <div className='flex'>
+                                {
+                                    movie.production_companies.map(element=>{
+                                    return <div className='justify-center text-center'>
+                                        <span className='text-xs font-bold text-center leading-3 inline-block mb-2'>{element.name}</span>
+                                        <img className='w-20 mx-auto' src={element.logo_path ? `https://image.tmdb.org/t/p/original${element.logo_path}` : '../public/no_image.png'} alt={element.name} />
+                                    </div>
+                                    })
+                                }
+                                
+                            </div>
+                            <div className='flex'>
                                 <p className='font-bold'>Budget: </p>
                                 <p className='italic'>&nbsp;{movie.budget}$</p>
                             </div>
-                            <div className='flex space-x-3'>
-                            <div className='flex'>
+                            <div className='flex space-x-3 sm:justify-center sm:flex-col-reverse sm:content-center'>
+                            <div className='flex sm:justify-center'>
                                 {
-                                 [...new Array(stars)].map((_,i)=><AiFillStar className='text-2xl text-yellow-300' key={i}/>)
+                                 [...new Array(stars)].map((_,i)=><AiFillStar className='text-2xl sm:text-4xl text-yellow-300' key={i}/>)
                                 }
                             </div>
-                            <div >{movie.vote_average}</div>
+                            <div className='sm:text-center'>{movie.vote_average}</div>
                             </div>
                             <div className='flex'>
                                 {movie.overview}
@@ -95,7 +106,7 @@ function MovieCard() {
                             
                         </div>
                     </div>
-                    <div className='flex pt-4'>
+                    <div className='pt-4 pb-8'>
                                 <Video data={movie.results[0]}></Video>
                     </div>
                     <div className='flex'>
