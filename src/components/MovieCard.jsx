@@ -67,12 +67,12 @@ function MovieCard() {
                                     })}
                                 </div>
                             </div>
-                            <div className='flex'>
+                            <div className='flex justify-between'>
                                 {
                                     movie.production_companies.map(element=>{
-                                    return <div className='justify-center text-center'>
+                                    return <div className='text-center'>
                                         <span className='text-xs font-bold text-center leading-3 inline-block mb-2'>{element.name}</span>
-                                        <img className='w-20 mx-auto' src={element.logo_path ? `https://image.tmdb.org/t/p/original${element.logo_path}` : '../public/no_image.png'} alt={element.name} />
+                                        <img className='w-20 mx-auto' src={element.logo_path ? `https://image.tmdb.org/t/p/original${element.logo_path}` : '/no_image.png'} alt={element.name} />
                                     </div>
                                     })
                                 }
